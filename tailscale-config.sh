@@ -4,6 +4,24 @@
 
 set -e
 
+# 检查是否以 root 或 sudo 运行（仅对需要 root 的命令）
+check_root() {
+    if [ "$EUID" -ne 0 ]; then
+        echo "请使用 sudo 运行此脚本: sudo bash tailscale-config.sh $*"
+        exit 1
+    fi
+}
+
+# 写入 sysctl 配置（避免重复写入）
+set_sysctl() {
+    local key="$1"
+    local value="$2"
+    local conf_file="/etc/sysctl.d/99-tailscale.conf"
+    if ! grep -qF "${key} = ${value}" "$conf_file" 2>/dev/null; then
+        echo "${key} = ${value}" | tee -a "$conf_file"
+    fi
+}
+
 show_help() {
     echo "用法: sudo bash tailscale-config.sh [选项]"
     echo ""
@@ -36,16 +54,18 @@ case "${1:-}" in
         tailscale up
         ;;
     --exit-node)
+        check_root "--exit-node"
         check_tailscale
         echo "正在配置为出口节点..."
-        # 启用 IP 转发
-        echo 'net.ipv4.ip_forward = 1' | tee -a /etc/sysctl.d/99-tailscale.conf
-        echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/99-tailscale.conf
+        # 启用 IP 转发（避免重复写入）
+        set_sysctl "net.ipv4.ip_forward" "1"
+        set_sysctl "net.ipv6.conf.all.forwarding" "1"
         sysctl -p /etc/sysctl.d/99-tailscale.conf
         tailscale up --advertise-exit-node
         echo "此节点已配置为出口节点，请在 Tailscale 管理控制台批准。"
         ;;
     --subnet)
+        check_root "--subnet"
         check_tailscale
         if [ -z "${2:-}" ]; then
             echo "错误: 请提供子网 CIDR，例: --subnet 192.168.1.0/24"
@@ -53,8 +73,8 @@ case "${1:-}" in
         fi
         SUBNET="$2"
         echo "正在广播子网路由: $SUBNET"
-        # 启用 IP 转发
-        echo 'net.ipv4.ip_forward = 1' | tee -a /etc/sysctl.d/99-tailscale.conf
+        # 启用 IP 转发（避免重复写入）
+        set_sysctl "net.ipv4.ip_forward" "1"
         sysctl -p /etc/sysctl.d/99-tailscale.conf
         tailscale up --advertise-routes="$SUBNET"
         echo "子网路由已广播，请在 Tailscale 管理控制台批准。"

@@ -21,17 +21,28 @@ else
 
     # 检测发行版
     if [ -f /etc/debian_version ]; then
-        # Debian/Ubuntu
-        curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg \
+        # Debian/Ubuntu - 动态检测系统版本
+        DISTRO_CODENAME=$(lsb_release -cs 2>/dev/null || (. /etc/os-release && echo "$VERSION_CODENAME"))
+        if [ -z "$DISTRO_CODENAME" ]; then
+            echo "无法检测到系统版本，请手动安装 Tailscale: https://tailscale.com/download"
+            exit 1
+        fi
+        curl -fsSL "https://pkgs.tailscale.com/stable/ubuntu/${DISTRO_CODENAME}.noarmor.gpg" \
             | tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
-        curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list \
+        curl -fsSL "https://pkgs.tailscale.com/stable/ubuntu/${DISTRO_CODENAME}.tailscale-keyring.list" \
             | tee /etc/apt/sources.list.d/tailscale.list
         apt-get update -q
         apt-get install -y tailscale
     elif [ -f /etc/redhat-release ]; then
         # RHEL/CentOS/Fedora
-        dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-        dnf install -y tailscale
+        RHEL_VERSION=$(rpm -E %{rhel} 2>/dev/null || echo "9")
+        if command -v dnf &>/dev/null; then
+            dnf config-manager --add-repo "https://pkgs.tailscale.com/stable/rhel/${RHEL_VERSION}/tailscale.repo"
+            dnf install -y tailscale
+        else
+            yum-config-manager --add-repo "https://pkgs.tailscale.com/stable/rhel/${RHEL_VERSION}/tailscale.repo"
+            yum install -y tailscale
+        fi
     else
         echo "不支持的发行版，请手动安装 Tailscale: https://tailscale.com/download"
         exit 1
