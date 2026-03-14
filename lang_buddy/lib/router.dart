@@ -55,7 +55,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/chat/:conversationId',
       builder: (context, state) {
-        final agent = state.extra as Agent;
+        final agent = state.extra;
+        if (agent is! Agent) {
+          return const ConversationsScreen();
+        }
         return ChatScreen(
           conversationId: state.pathParameters['conversationId']!,
           agent: agent,
@@ -65,7 +68,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/agent/:agentId',
       builder: (context, state) {
-        final agent = state.extra as Agent;
+        final agent = state.extra;
+        if (agent is! Agent) {
+          return const ContactsScreen();
+        }
         return AgentDetailScreen(agent: agent);
       },
     ),

@@ -28,7 +28,7 @@ class ConversationsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.chat_bubble_outline,
+                  const Icon(Icons.chat_bubble_outline,
                       size: 64, color: AppColors.textHint),
                   const SizedBox(height: 16),
                   const Text(
