@@ -16,14 +16,14 @@ export default function App() {
 
   if (!onboardingDone) {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/claude">
         <OnboardingPage />
       </BrowserRouter>
     );
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/claude">
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<ConversationsPage />} />
