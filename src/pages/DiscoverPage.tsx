@@ -28,7 +28,7 @@ export default function DiscoverPage() {
 
   return (
     <div className="flex-1 flex flex-col">
-      <header className="px-4 py-3 border-b border-gray-100">
+      <header className="px-4 py-3 border-b border-gray-100 dark:border-gray-800">
         <h1 className="text-lg font-bold">发现</h1>
       </header>
 
@@ -39,7 +39,7 @@ export default function DiscoverPage() {
             <button
               key={s.agentId}
               onClick={() => handleStartScenario(s.agentId)}
-              className="bg-gray-50 rounded-2xl p-4 text-left hover:bg-gray-100 transition-colors"
+              className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
               <span className="text-2xl">{s.emoji}</span>
               <h3 className="font-medium text-sm mt-2">{s.title}</h3>
@@ -54,7 +54,7 @@ export default function DiscoverPage() {
             <div
               key={agent.id}
               onClick={() => navigate(`/agent/${agent.id}`)}
-              className="flex items-center gap-3 bg-gray-50 rounded-2xl p-3 cursor-pointer hover:bg-gray-100 transition-colors"
+              className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-2xl p-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
               <Avatar name={agent.name} />
               <div className="flex-1 min-w-0">

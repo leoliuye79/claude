@@ -21,7 +21,7 @@ export default function ConversationsPage() {
 
   return (
     <div className="flex-1 flex flex-col">
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
         <h1 className="text-lg font-bold">对话</h1>
         <button onClick={() => navigate('/contacts')} className="p-2 text-primary">
           <Plus size={22} />
@@ -43,7 +43,7 @@ export default function ConversationsPage() {
             return (
               <div
                 key={conv.id}
-                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer active:bg-gray-100 dark:active:bg-gray-700 transition-colors"
                 onClick={() => navigate(`/chat/${conv.id}`)}
               >
                 <Avatar name={agent.name} />

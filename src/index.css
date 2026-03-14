@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: #4CAF50;
   --color-primary-dark: #388E3C;
@@ -26,6 +28,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.dark body {
+  background: #111;
+  color: #e5e5e5;
+}
+
 #root {
   max-width: 430px;
   margin: 0 auto;
@@ -36,9 +43,16 @@ body {
   position: relative;
 }
 
+.dark #root {
+  background: #111;
+}
+
 @media (min-width: 431px) {
   #root {
     border-left: 1px solid var(--color-border);
     border-right: 1px solid var(--color-border);
+  }
+  .dark #root {
+    border-color: #333;
   }
 }

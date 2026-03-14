@@ -200,6 +200,7 @@ export const useStore = create<AppState>()(
     }),
     {
       name: 'lang-buddy-storage',
+      version: 1,
       partialize: (state) => ({
         agents: state.agents,
         conversations: state.conversations,
@@ -208,6 +209,22 @@ export const useStore = create<AppState>()(
         onboardingDone: state.onboardingDone,
         darkMode: state.darkMode,
       }),
+      merge: (persisted, current) => {
+        const persistedState = persisted as Partial<AppState> | undefined;
+        if (!persistedState) return current;
+
+        // Merge default agents: keep all persisted agents but add any new defaults
+        const persistedAgents = persistedState.agents ?? [];
+        const persistedIds = new Set(persistedAgents.map((a) => a.id));
+        const newDefaults = defaultAgents.filter((a) => !persistedIds.has(a.id));
+        const mergedAgents = [...persistedAgents, ...newDefaults];
+
+        return {
+          ...current,
+          ...persistedState,
+          agents: mergedAgents,
+        };
+      },
     }
   )
 );

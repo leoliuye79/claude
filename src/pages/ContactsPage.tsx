@@ -13,7 +13,7 @@ export default function ContactsPage() {
 
   return (
     <div className="flex-1 flex flex-col">
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
         <h1 className="text-lg font-bold">伙伴</h1>
         <button onClick={() => navigate('/custom-agent')} className="p-2 text-primary">
           <UserPlus size={20} />
@@ -42,7 +42,7 @@ export default function ContactsPage() {
 function AgentRow({ agent, onClick }: { agent: ReturnType<typeof useStore.getState>['agents'][0]; onClick: () => void }) {
   return (
     <div
-      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer active:bg-gray-100 transition-colors"
+      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer active:bg-gray-100 dark:active:bg-gray-700 transition-colors"
       onClick={onClick}
     >
       <Avatar name={agent.name} />

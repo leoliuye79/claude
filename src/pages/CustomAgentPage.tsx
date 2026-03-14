@@ -42,8 +42,8 @@ export default function CustomAgentPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col">
-      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100">
+    <div className="flex-1 flex flex-col bg-white dark:bg-gray-900 dark:text-gray-100">
+      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100 dark:border-gray-800">
         <button onClick={() => navigate(-1)} className="p-1 text-gray-600">
           <ChevronLeft size={24} />
         </button>
@@ -62,7 +62,7 @@ export default function CustomAgentPage() {
           <div className="flex flex-wrap gap-2">
             {(Object.keys(ROLE_LABELS) as AgentRole[]).map((r) => (
               <button key={r} onClick={() => setRole(r)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${role === r ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200'}`}>
+                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${role === r ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
                 {ROLE_LABELS[r]}
               </button>
             ))}
@@ -74,7 +74,7 @@ export default function CustomAgentPage() {
           <div className="flex flex-wrap gap-2">
             {(['strict', 'encouraging', 'casual', 'socratic'] as TeachingStyle[]).map((s) => (
               <button key={s} onClick={() => setStyle(s)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${style === s ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200'}`}>
+                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${style === s ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
                 {s}
               </button>
             ))}
@@ -86,7 +86,7 @@ export default function CustomAgentPage() {
           <div className="flex flex-wrap gap-2">
             {(['immediate', 'endOfTurn', 'onRequest'] as CorrectionMode[]).map((c) => (
               <button key={c} onClick={() => setCorrectionMode(c)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${correctionMode === c ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200'}`}>
+                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${correctionMode === c ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
                 {c}
               </button>
             ))}
@@ -98,7 +98,7 @@ export default function CustomAgentPage() {
           <div className="flex flex-wrap gap-2">
             {['beginner', 'intermediate', 'advanced', 'all'].map((l) => (
               <button key={l} onClick={() => setTargetLevel(l)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${targetLevel === l ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200'}`}>
+                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${targetLevel === l ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
                 {l}
               </button>
             ))}
@@ -116,7 +116,7 @@ export default function CustomAgentPage() {
 function Field({ label, value, onChange, placeholder, multiline }: {
   label: string; value: string; onChange: (v: string) => void; placeholder: string; multiline?: boolean;
 }) {
-  const cls = "w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] outline-none focus:border-primary transition-colors";
+  const cls = "w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-800 text-[15px] outline-none focus:border-primary transition-colors";
   return (
     <div>
       <label className="text-sm font-medium text-gray-500 block mb-2">{label}</label>
