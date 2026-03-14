@@ -28,8 +28,8 @@ export default function AIModelSettingsPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col">
-      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100">
+    <div className="flex-1 flex flex-col bg-white dark:bg-gray-900 dark:text-gray-100">
+      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100 dark:border-gray-800">
         <button onClick={() => navigate(-1)} className="p-1 text-gray-600">
           <ChevronLeft size={24} />
         </button>
@@ -48,7 +48,7 @@ export default function AIModelSettingsPage() {
                 key={p.id}
                 onClick={() => { setProvider(p.id); if (p.models.length) setModel(p.models[0]); }}
                 className={`w-full text-left px-4 py-3 rounded-xl border transition-colors ${
-                  provider === p.id ? 'border-primary bg-primary/5' : 'border-gray-200'
+                  provider === p.id ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700'
                 }`}
               >
                 <span className="text-[15px]">{p.label}</span>
@@ -64,7 +64,7 @@ export default function AIModelSettingsPage() {
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder={provider === 'claude' ? 'sk-ant-...' : 'sk-...'}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] outline-none focus:border-primary transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-800 text-[15px] outline-none focus:border-primary transition-colors"
           />
         </div>
 
@@ -77,7 +77,7 @@ export default function AIModelSettingsPage() {
                   key={m}
                   onClick={() => setModel(m)}
                   className={`w-full text-left px-4 py-3 rounded-xl border transition-colors ${
-                    model === m ? 'border-primary bg-primary/5' : 'border-gray-200'
+                    model === m ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700'
                   }`}
                 >
                   <span className="text-sm font-mono">{m}</span>
@@ -96,7 +96,7 @@ export default function AIModelSettingsPage() {
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
                 placeholder="model-name"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] outline-none focus:border-primary transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-800 text-[15px] outline-none focus:border-primary transition-colors"
               />
             </div>
             <div>
@@ -106,7 +106,7 @@ export default function AIModelSettingsPage() {
                 value={baseUrl}
                 onChange={(e) => setBaseUrl(e.target.value)}
                 placeholder="https://api.example.com/v1"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] outline-none focus:border-primary transition-colors"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-800 text-[15px] outline-none focus:border-primary transition-colors"
               />
             </div>
           </>

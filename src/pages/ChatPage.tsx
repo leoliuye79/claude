@@ -40,9 +40,9 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="flex-1 flex flex-col h-dvh">
+    <div className="flex-1 flex flex-col h-dvh bg-white dark:bg-gray-900 dark:text-gray-100">
       {/* Header */}
-      <header className="flex items-center gap-3 px-2 py-2.5 border-b border-gray-100 bg-white shrink-0">
+      <header className="flex items-center gap-3 px-2 py-2.5 border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shrink-0">
         <button onClick={() => navigate(-1)} className="p-1 text-gray-600">
           <ChevronLeft size={24} />
         </button>
@@ -60,7 +60,7 @@ export default function ChatPage() {
         ))}
         {sending && (
           <div className="flex items-start mb-3">
-            <div className="bg-gray-100 rounded-2xl rounded-bl-md px-4 py-3">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-bl-md px-4 py-3">
               <div className="flex gap-1">
                 <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />

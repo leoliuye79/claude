@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useStore } from '@/store';
 import OnboardingPage from '@/pages/OnboardingPage';
@@ -13,6 +14,11 @@ import CustomAgentPage from '@/pages/CustomAgentPage';
 
 export default function App() {
   const onboardingDone = useStore((s) => s.onboardingDone);
+  const darkMode = useStore((s) => s.darkMode);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+  }, [darkMode]);
 
   if (!onboardingDone) {
     return (

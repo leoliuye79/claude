@@ -27,7 +27,7 @@ export default function ChatBubble({ message, agentName }: ChatBubbleProps) {
         className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[15px] leading-relaxed whitespace-pre-wrap ${
           isUser
             ? 'bg-primary text-white rounded-br-md'
-            : 'bg-gray-100 text-gray-800 rounded-bl-md'
+            : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-md'
         }`}
       >
         {message.content}

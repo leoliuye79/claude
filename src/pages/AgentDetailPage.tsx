@@ -33,8 +33,8 @@ export default function AgentDetailPage() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col">
-      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100">
+    <div className="flex-1 flex flex-col bg-white dark:bg-gray-900 dark:text-gray-100">
+      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100 dark:border-gray-800">
         <button onClick={() => navigate(-1)} className="p-1 text-gray-600">
           <ChevronLeft size={24} />
         </button>
@@ -50,7 +50,7 @@ export default function AgentDetailPage() {
 
         <div className="grid grid-cols-4 gap-2 px-4 mb-6">
           {info.map((item) => (
-            <div key={item.label} className="bg-gray-50 rounded-xl p-3 text-center">
+            <div key={item.label} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-3 text-center">
               <p className="text-xs text-gray-400 mb-1">{item.label}</p>
               <p className="text-sm font-medium">{item.value}</p>
             </div>
@@ -73,7 +73,7 @@ export default function AgentDetailPage() {
 
         <div className="px-4 mb-6">
           <h3 className="text-sm font-medium text-gray-500 mb-2">打招呼</h3>
-          <p className="text-sm text-gray-600 bg-gray-50 rounded-xl p-3 italic">"{agent.greeting}"</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-xl p-3 italic">"{agent.greeting}"</p>
         </div>
       </div>
 

@@ -13,11 +13,11 @@ export default function MainLayout() {
   const location = useLocation();
 
   return (
-    <div className="flex-1 flex flex-col h-dvh">
+    <div className="flex-1 flex flex-col h-dvh bg-white dark:bg-gray-900 dark:text-gray-100">
       <div className="flex-1 flex flex-col overflow-hidden">
         <Outlet />
       </div>
-      <nav className="flex items-center border-t border-gray-100 bg-white shrink-0">
+      <nav className="flex items-center border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shrink-0">
         {TABS.map((tab) => {
           const isActive = location.pathname === tab.path;
           const Icon = tab.icon;
