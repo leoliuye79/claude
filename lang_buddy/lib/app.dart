@@ -32,7 +32,7 @@ class LangBuddyApp extends ConsumerWidget {
           body: Center(child: CircularProgressIndicator()),
         ),
       ),
-      error: (_, __) => _buildOnboarding(context, ref, themeMode),
+      error: (_, _) => _buildOnboarding(context, ref, themeMode),
       data: (done) {
         if (!done) return _buildOnboarding(context, ref, themeMode);
         return MaterialApp.router(

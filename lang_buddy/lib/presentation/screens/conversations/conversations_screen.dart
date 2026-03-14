@@ -58,7 +58,7 @@ class ConversationsScreen extends ConsumerWidget {
 
               return ListView.separated(
                 itemCount: sorted.length,
-                separatorBuilder: (_, _a) => const Divider(indent: 76),
+                separatorBuilder: (_, _) => const Divider(indent: 76),
                 itemBuilder: (context, index) {
                   final conv = sorted[index];
                   final agent = agentMap[conv.agentId];
