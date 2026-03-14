@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_dimensions.dart';
 import '../../../core/constants/app_strings.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/common/avatar_widget.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeModeProvider);
+    final isDark = themeMode == ThemeMode.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.tabMe),
@@ -70,6 +75,13 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const Divider(indent: 56),
                 _buildSettingsItem(
+                  icon: Icons.person_add,
+                  iconColor: const Color(0xFFFF9500),
+                  title: '创建自定义 Agent',
+                  onTap: () => context.push('/settings/custom-agent'),
+                ),
+                const Divider(indent: 56),
+                _buildSettingsItem(
                   icon: Icons.language,
                   iconColor: const Color(0xFF1989FA),
                   title: '学习语言',
@@ -91,11 +103,45 @@ class SettingsScreen extends StatelessWidget {
             color: AppColors.white,
             child: Column(
               children: [
+                SwitchListTile(
+                  secondary: Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF303030),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(Icons.dark_mode,
+                        color: AppColors.white, size: 20),
+                  ),
+                  title: const Text('深色模式',
+                      style: TextStyle(
+                          fontSize: AppDimensions.fontLg,
+                          color: AppColors.textPrimary)),
+                  value: isDark,
+                  activeTrackColor: AppColors.primaryGreen,
+                  onChanged: (v) {
+                    ref
+                        .read(themeModeProvider.notifier)
+                        .setMode(v ? ThemeMode.dark : ThemeMode.light);
+                  },
+                ),
+                const Divider(indent: 56),
                 _buildSettingsItem(
                   icon: Icons.info_outline,
                   iconColor: const Color(0xFF1989FA),
                   title: '关于 LangBuddy',
-                  onTap: () {},
+                  onTap: () {
+                    showAboutDialog(
+                      context: context,
+                      applicationName: 'LangBuddy',
+                      applicationVersion: '1.0.0',
+                      children: [
+                        const Text('一款微信风格的 AI 语言学习 App。\n'
+                            '通过与 AI 伙伴日常对话练习英语。'),
+                      ],
+                    );
+                  },
                 ),
               ],
             ),

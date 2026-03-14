@@ -7,7 +7,6 @@ import 'package:lang_buddy/config/prompts/system_prompts.dart';
 import 'package:lang_buddy/data/datasources/remote/ai_client.dart';
 import 'package:lang_buddy/data/datasources/remote/claude_client.dart';
 import 'package:lang_buddy/data/datasources/remote/openai_client.dart';
-import 'package:lang_buddy/domain/entities/agent.dart';
 import 'package:lang_buddy/domain/entities/message.dart';
 
 void main() {

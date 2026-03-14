@@ -8,6 +8,7 @@ import '../../widgets/chat/chat_bubble.dart';
 import '../../widgets/chat/chat_input_bar.dart';
 import '../../widgets/chat/correction_bubble.dart';
 import '../../widgets/chat/typing_indicator.dart';
+import '../../widgets/chat/voice_bubble.dart';
 import '../../widgets/common/avatar_widget.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
@@ -90,6 +91,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                     }
                     if (message.type == MessageType.systemNotice) {
                       return _buildSystemNotice(message);
+                    }
+                    if (message.type == MessageType.voice) {
+                      return VoiceBubble(message: message);
                     }
                     return ChatBubble(message: message);
                   },

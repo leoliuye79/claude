@@ -41,6 +41,13 @@ class ConversationActions {
     ));
   }
 
+  Future<void> togglePin(Conversation conversation) async {
+    final repo = _ref.read(conversationRepositoryProvider);
+    await repo.updateConversation(
+      conversation.copyWith(isPinned: !conversation.isPinned),
+    );
+  }
+
   Future<void> deleteConversation(String id) async {
     final repo = _ref.read(conversationRepositoryProvider);
     await repo.deleteConversation(id);
