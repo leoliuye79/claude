@@ -15,7 +15,6 @@ export default function AgentDetailPage() {
   if (!agent) return <div className="flex-1 flex items-center justify-center text-gray-400">未找到</div>;
 
   const handleStartChat = () => {
-    // Check if there's an existing conversation with this agent
     const existing = conversations.find((c) => c.agentId === agent.id);
     if (existing) {
       navigate(`/chat/${existing.id}`, { replace: true });
@@ -33,54 +32,71 @@ export default function AgentDetailPage() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col bg-white dark:bg-gray-900 dark:text-gray-100">
-      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100 dark:border-gray-800">
-        <button onClick={() => navigate(-1)} className="p-1 text-gray-600">
-          <ChevronLeft size={24} />
+    <div className="flex-1 flex flex-col bg-white dark:bg-[#12121A]">
+      {/* Header with gradient background */}
+      <div className="gradient-primary pb-16 pt-3 px-3 relative">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-8 h-8 rounded-xl flex items-center justify-center text-white/80 hover:bg-white/10 transition-colors"
+        >
+          <ChevronLeft size={22} />
         </button>
-        <span className="font-medium">伙伴详情</span>
-      </header>
+      </div>
 
-      <div className="flex-1 overflow-y-auto">
-        <div className="flex flex-col items-center pt-8 pb-6">
-          <Avatar name={agent.name} size="lg" />
-          <h2 className="text-xl font-bold mt-3">{agent.nameZh}</h2>
-          <p className="text-sm text-gray-400">{agent.name}</p>
-        </div>
+      {/* Profile card overlapping header */}
+      <div className="flex-1 overflow-y-auto -mt-12 relative">
+        <div className="mx-4 bg-white dark:bg-gray-800/50 rounded-3xl shadow-lg dark:shadow-none px-5 pt-12 pb-5 relative mb-4">
+          {/* Avatar centered on top */}
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+            <Avatar name={agent.name} size="xl" />
+          </div>
 
-        <div className="grid grid-cols-4 gap-2 px-4 mb-6">
-          {info.map((item) => (
-            <div key={item.label} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-3 text-center">
-              <p className="text-xs text-gray-400 mb-1">{item.label}</p>
-              <p className="text-sm font-medium">{item.value}</p>
-            </div>
-          ))}
-        </div>
+          <div className="text-center mb-5">
+            <h2 className="text-xl font-bold dark:text-white">{agent.nameZh}</h2>
+            <p className="text-[13px] text-gray-400 dark:text-gray-500 mt-0.5">{agent.name}</p>
+          </div>
 
-        <div className="px-4 mb-4">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">性格</h3>
-          <p className="text-sm text-gray-600 leading-relaxed">{agent.personality}</p>
-        </div>
-
-        <div className="px-4 mb-4">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">话题</h3>
-          <div className="flex flex-wrap gap-2">
-            {agent.topics.map((t) => (
-              <span key={t} className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">{t}</span>
+          <div className="grid grid-cols-4 gap-2">
+            {info.map((item) => (
+              <div key={item.label} className="bg-surface-dim dark:bg-gray-700/50 rounded-xl p-2.5 text-center">
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 font-medium mb-0.5">{item.label}</p>
+                <p className="text-[12px] font-semibold dark:text-gray-200 truncate">{item.value}</p>
+              </div>
             ))}
           </div>
         </div>
 
-        <div className="px-4 mb-6">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">打招呼</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-xl p-3 italic">"{agent.greeting}"</p>
+        <div className="px-5 space-y-5 pb-24">
+          <section>
+            <h3 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">性格</h3>
+            <p className="text-[14px] text-gray-600 dark:text-gray-300 leading-relaxed">{agent.personality}</p>
+          </section>
+
+          <section>
+            <h3 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">话题</h3>
+            <div className="flex flex-wrap gap-2">
+              {agent.topics.map((t) => (
+                <span key={t} className="text-[12px] bg-surface-dim dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1.5 rounded-lg font-medium">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">打招呼</h3>
+            <div className="bg-surface-dim dark:bg-gray-800 rounded-2xl p-4">
+              <p className="text-[14px] text-gray-600 dark:text-gray-300 italic leading-relaxed">"{agent.greeting}"</p>
+            </div>
+          </section>
         </div>
       </div>
 
-      <div className="p-4">
+      {/* Floating button */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white dark:from-[#12121A] via-white/80 dark:via-[#12121A]/80 to-transparent pt-12">
         <button
           onClick={handleStartChat}
-          className="w-full bg-primary text-white py-3 rounded-full font-medium flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors"
+          className="w-full gradient-primary text-white py-3.5 rounded-2xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform"
         >
           <MessageCircle size={18} />
           开始聊天

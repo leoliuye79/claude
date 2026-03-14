@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '@/store';
-import { ChevronRight, Cpu, Moon, Info } from 'lucide-react';
+import { ChevronRight, Cpu, Moon, Info, Sparkles } from 'lucide-react';
 
 export default function SettingsPage() {
   const darkMode = useStore((s) => s.darkMode);
@@ -8,47 +8,71 @@ export default function SettingsPage() {
   const aiConfig = useStore((s) => s.aiConfig);
   const navigate = useNavigate();
 
+  const providerLabel = aiConfig.provider === 'claude' ? 'Claude' : aiConfig.provider === 'openai' ? 'OpenAI' : '自定义';
+
   return (
     <div className="flex-1 flex flex-col">
-      <header className="px-4 py-3 border-b border-gray-100 dark:border-gray-800">
-        <h1 className="text-lg font-bold">设置</h1>
+      <header className="px-5 pt-5 pb-3">
+        <h1 className="text-[22px] font-bold tracking-tight">设置</h1>
       </header>
 
-      <div className="flex-1 overflow-y-auto">
-        <div className="px-4 py-2 text-xs text-gray-400 font-medium mt-2">AI 配置</div>
+      <div className="flex-1 overflow-y-auto px-4 py-2">
+        {/* AI Config section */}
+        <div className="text-[11px] text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider px-2 mb-2">
+          AI 配置
+        </div>
         <button
           onClick={() => navigate('/settings/ai-model')}
-          className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="w-full flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 hover:shadow-md dark:hover:bg-gray-800 transition-all active:scale-[0.99] mb-6"
         >
-          <Cpu size={20} className="text-primary" />
+          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
+            <Cpu size={18} className="text-white" />
+          </div>
           <div className="flex-1 text-left">
-            <p className="text-[15px]">AI 模型设置</p>
-            <p className="text-xs text-gray-400 mt-0.5">
-              {aiConfig.provider === 'claude' ? 'Claude' : aiConfig.provider === 'openai' ? 'OpenAI' : '自定义'} · {aiConfig.apiKey ? '已配置' : '未配置'}
+            <p className="text-[15px] font-medium dark:text-white">AI 模型设置</p>
+            <p className="text-[12px] text-gray-400 dark:text-gray-500 mt-0.5">
+              {providerLabel} · {aiConfig.apiKey ? '已配置' : '未配置'}
             </p>
           </div>
-          <ChevronRight size={18} className="text-gray-300" />
+          <ChevronRight size={16} className="text-gray-300 dark:text-gray-600" />
         </button>
 
-        <div className="px-4 py-2 text-xs text-gray-400 font-medium mt-2">外观</div>
-        <div className="flex items-center gap-3 px-4 py-3.5">
-          <Moon size={20} className="text-primary" />
-          <span className="flex-1 text-[15px]">深色模式</span>
+        {/* Appearance section */}
+        <div className="text-[11px] text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider px-2 mb-2">
+          外观
+        </div>
+        <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 mb-6">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+            <Moon size={18} className="text-white" />
+          </div>
+          <span className="flex-1 text-[15px] font-medium dark:text-white">深色模式</span>
           <button
             onClick={toggleDarkMode}
-            className={`w-12 h-7 rounded-full transition-colors ${darkMode ? 'bg-primary' : 'bg-gray-200'}`}
+            className={`w-[52px] h-[30px] rounded-full transition-all duration-300 relative ${
+              darkMode ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
+            }`}
           >
-            <div className={`w-5 h-5 rounded-full bg-white shadow transition-transform mx-1 ${darkMode ? 'translate-x-5' : ''}`} />
+            <div
+              className={`absolute top-[3px] w-6 h-6 rounded-full bg-white shadow-sm transition-all duration-300 ${
+                darkMode ? 'left-[23px]' : 'left-[3px]'
+              }`}
+            />
           </button>
         </div>
 
-        <div className="px-4 py-2 text-xs text-gray-400 font-medium mt-2">关于</div>
-        <div className="flex items-center gap-3 px-4 py-3.5">
-          <Info size={20} className="text-primary" />
-          <div className="flex-1">
-            <p className="text-[15px]">LangBuddy</p>
-            <p className="text-xs text-gray-400 mt-0.5">v2.0.0 · React + Capacitor</p>
+        {/* About section */}
+        <div className="text-[11px] text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider px-2 mb-2">
+          关于
+        </div>
+        <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
+            <Sparkles size={18} className="text-white" />
           </div>
+          <div className="flex-1">
+            <p className="text-[15px] font-medium dark:text-white">LangBuddy</p>
+            <p className="text-[12px] text-gray-400 dark:text-gray-500 mt-0.5">v2.0.0 · React + Capacitor</p>
+          </div>
+          <Info size={16} className="text-gray-300 dark:text-gray-600" />
         </div>
       </div>
     </div>

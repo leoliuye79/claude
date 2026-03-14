@@ -1,27 +1,41 @@
-const COLORS = [
-  'bg-red-400', 'bg-blue-400', 'bg-green-400', 'bg-purple-400',
-  'bg-pink-400', 'bg-indigo-400', 'bg-teal-400', 'bg-orange-400',
+const GRADIENTS = [
+  'from-violet-500 to-purple-600',
+  'from-blue-500 to-cyan-500',
+  'from-emerald-500 to-teal-500',
+  'from-rose-500 to-pink-500',
+  'from-amber-500 to-orange-500',
+  'from-indigo-500 to-blue-600',
+  'from-fuchsia-500 to-pink-500',
+  'from-cyan-500 to-teal-500',
 ];
 
-function hashColor(name: string): string {
+function hashGradient(name: string): string {
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash);
   }
-  return COLORS[Math.abs(hash) % COLORS.length];
+  return GRADIENTS[Math.abs(hash) % GRADIENTS.length];
 }
 
 interface AvatarProps {
   name: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const SIZES = { sm: 'w-8 h-8 text-sm', md: 'w-10 h-10 text-base', lg: 'w-14 h-14 text-xl' };
+const SIZES = {
+  sm: 'w-9 h-9 text-sm',
+  md: 'w-11 h-11 text-base',
+  lg: 'w-16 h-16 text-2xl',
+  xl: 'w-20 h-20 text-3xl',
+};
 
 export default function Avatar({ name, size = 'md' }: AvatarProps) {
   const letter = (name[0] ?? '?').toUpperCase();
+  const gradient = hashGradient(name);
   return (
-    <div className={`${SIZES[size]} ${hashColor(name)} rounded-full flex items-center justify-center text-white font-semibold shrink-0`}>
+    <div
+      className={`${SIZES[size]} bg-gradient-to-br ${gradient} rounded-2xl flex items-center justify-center text-white font-bold shrink-0 shadow-sm`}
+    >
       {letter}
     </div>
   );

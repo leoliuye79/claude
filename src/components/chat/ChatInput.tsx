@@ -40,36 +40,48 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
     setTimeout(() => setMicTip(false), 2000);
   };
 
+  const hasText = text.trim().length > 0;
+
   return (
-    <div className="flex items-end gap-2 p-3 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 relative">
+    <div className="px-3 py-3 bg-white dark:bg-[#12121A] border-t border-gray-100/50 dark:border-gray-800/30 relative">
       {micTip && (
-        <div className="absolute -top-8 left-3 bg-gray-800 text-white text-xs px-3 py-1 rounded-full">
+        <div className="absolute -top-10 left-4 bg-gray-800 dark:bg-gray-700 text-white text-xs px-3.5 py-2 rounded-xl shadow-lg animate-fade-in">
           语音功能即将上线
+          <div className="absolute bottom-0 left-5 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800 dark:bg-gray-700" />
         </div>
       )}
-      <button onClick={handleMic} className="p-2 text-gray-400 hover:text-primary transition-colors">
-        <Mic size={22} />
-      </button>
-      <div className="flex-1 relative">
-        <textarea
-          ref={textareaRef}
-          value={text}
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          placeholder="输入消息..."
-          rows={1}
-          disabled={disabled}
-          className="w-full resize-none rounded-2xl border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-4 py-2.5 text-[15px] outline-none focus:border-primary transition-colors disabled:opacity-50"
-          style={{ maxHeight: 120 }}
-        />
+      <div className="flex items-end gap-2">
+        <button
+          onClick={handleMic}
+          className="w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-primary hover:bg-primary/10 transition-all shrink-0"
+        >
+          <Mic size={20} />
+        </button>
+        <div className="flex-1 relative">
+          <textarea
+            ref={textareaRef}
+            value={text}
+            onChange={handleInput}
+            onKeyDown={handleKeyDown}
+            placeholder="输入消息..."
+            rows={1}
+            disabled={disabled}
+            className="w-full resize-none rounded-2xl bg-surface-dim dark:bg-gray-800 px-4 py-2.5 text-[15px] outline-none border border-transparent focus:border-primary/30 dark:text-gray-100 transition-all disabled:opacity-50 placeholder:text-gray-400"
+            style={{ maxHeight: 120 }}
+          />
+        </div>
+        <button
+          onClick={handleSend}
+          disabled={!hasText || disabled}
+          className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all shrink-0 ${
+            hasText && !disabled
+              ? 'gradient-primary text-white shadow-sm shadow-primary/30 active:scale-95'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-300 dark:text-gray-600'
+          }`}
+        >
+          <Send size={18} />
+        </button>
       </div>
-      <button
-        onClick={handleSend}
-        disabled={!text.trim() || disabled}
-        className="p-2 text-primary disabled:text-gray-300 transition-colors"
-      >
-        <Send size={22} />
-      </button>
     </div>
   );
 }
