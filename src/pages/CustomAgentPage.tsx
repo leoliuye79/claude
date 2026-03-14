@@ -42,68 +42,69 @@ export default function CustomAgentPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white dark:bg-gray-900 dark:text-gray-100">
-      <header className="flex items-center gap-2 px-2 py-2.5 border-b border-gray-100 dark:border-gray-800">
-        <button onClick={() => navigate(-1)} className="p-1 text-gray-600">
-          <ChevronLeft size={24} />
+    <div className="flex-1 flex flex-col bg-white dark:bg-[#12121A]">
+      <header className="flex items-center gap-2 px-3 py-3 border-b border-gray-100/50 dark:border-gray-800/30">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-8 h-8 rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <ChevronLeft size={22} />
         </button>
-        <span className="font-medium flex-1">创建自定义伙伴</span>
-        <button onClick={handleSave} disabled={!name.trim() || !nameZh.trim()} className="p-2 text-primary disabled:text-gray-300">
-          <Check size={20} />
+        <span className="font-semibold flex-1 dark:text-white">创建自定义伙伴</span>
+        <button
+          onClick={handleSave}
+          disabled={!name.trim() || !nameZh.trim()}
+          className="w-8 h-8 rounded-xl flex items-center justify-center text-primary disabled:text-gray-300 dark:disabled:text-gray-600 hover:bg-primary/10 transition-colors"
+        >
+          <Check size={20} strokeWidth={2.5} />
         </button>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+      <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5">
         <Field label="英文名" value={name} onChange={setName} placeholder="e.g. Alex" />
         <Field label="中文名" value={nameZh} onChange={setNameZh} placeholder="e.g. 亚历克斯" />
 
-        <div>
-          <label className="text-sm font-medium text-gray-500 block mb-2">角色</label>
-          <div className="flex flex-wrap gap-2">
-            {(Object.keys(ROLE_LABELS) as AgentRole[]).map((r) => (
-              <button key={r} onClick={() => setRole(r)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${role === r ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
-                {ROLE_LABELS[r]}
-              </button>
-            ))}
-          </div>
-        </div>
+        <ChipGroup
+          label="角色"
+          options={Object.entries(ROLE_LABELS).map(([k, v]) => ({ value: k, label: v }))}
+          selected={role}
+          onSelect={(v) => setRole(v as AgentRole)}
+        />
 
-        <div>
-          <label className="text-sm font-medium text-gray-500 block mb-2">教学风格</label>
-          <div className="flex flex-wrap gap-2">
-            {(['strict', 'encouraging', 'casual', 'socratic'] as TeachingStyle[]).map((s) => (
-              <button key={s} onClick={() => setStyle(s)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${style === s ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
+        <ChipGroup
+          label="教学风格"
+          options={[
+            { value: 'strict', label: '严格' },
+            { value: 'encouraging', label: '鼓励' },
+            { value: 'casual', label: '随意' },
+            { value: 'socratic', label: '引导' },
+          ]}
+          selected={style}
+          onSelect={(v) => setStyle(v as TeachingStyle)}
+        />
 
-        <div>
-          <label className="text-sm font-medium text-gray-500 block mb-2">纠错模式</label>
-          <div className="flex flex-wrap gap-2">
-            {(['immediate', 'endOfTurn', 'onRequest'] as CorrectionMode[]).map((c) => (
-              <button key={c} onClick={() => setCorrectionMode(c)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${correctionMode === c ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
-                {c}
-              </button>
-            ))}
-          </div>
-        </div>
+        <ChipGroup
+          label="纠错模式"
+          options={[
+            { value: 'immediate', label: '即时' },
+            { value: 'endOfTurn', label: '回合后' },
+            { value: 'onRequest', label: '按需' },
+          ]}
+          selected={correctionMode}
+          onSelect={(v) => setCorrectionMode(v as CorrectionMode)}
+        />
 
-        <div>
-          <label className="text-sm font-medium text-gray-500 block mb-2">级别</label>
-          <div className="flex flex-wrap gap-2">
-            {['beginner', 'intermediate', 'advanced', 'all'].map((l) => (
-              <button key={l} onClick={() => setTargetLevel(l)}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${targetLevel === l ? 'border-primary bg-primary/5 text-primary' : 'border-gray-200 dark:border-gray-700'}`}>
-                {l}
-              </button>
-            ))}
-          </div>
-        </div>
+        <ChipGroup
+          label="级别"
+          options={[
+            { value: 'beginner', label: '初级' },
+            { value: 'intermediate', label: '中级' },
+            { value: 'advanced', label: '高级' },
+            { value: 'all', label: '全部' },
+          ]}
+          selected={targetLevel}
+          onSelect={setTargetLevel}
+        />
 
         <Field label="性格描述" value={personality} onChange={setPersonality} placeholder="Describe personality..." multiline />
         <Field label="问候语" value={greeting} onChange={setGreeting} placeholder="Hi! Let's chat!" multiline />
@@ -116,15 +117,47 @@ export default function CustomAgentPage() {
 function Field({ label, value, onChange, placeholder, multiline }: {
   label: string; value: string; onChange: (v: string) => void; placeholder: string; multiline?: boolean;
 }) {
-  const cls = "w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-800 text-[15px] outline-none focus:border-primary transition-colors";
+  const cls = "w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 transition-all dark:text-white placeholder:text-gray-400";
   return (
     <div>
-      <label className="text-sm font-medium text-gray-500 block mb-2">{label}</label>
+      <label className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
+        {label}
+      </label>
       {multiline ? (
         <textarea value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} rows={3} className={`${cls} resize-none`} />
       ) : (
         <input type="text" value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className={cls} />
       )}
+    </div>
+  );
+}
+
+function ChipGroup({ label, options, selected, onSelect }: {
+  label: string;
+  options: { value: string; label: string }[];
+  selected: string;
+  onSelect: (v: string) => void;
+}) {
+  return (
+    <div>
+      <label className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
+        {label}
+      </label>
+      <div className="flex flex-wrap gap-2">
+        {options.map((o) => (
+          <button
+            key={o.value}
+            onClick={() => onSelect(o.value)}
+            className={`px-3.5 py-2 rounded-xl text-[13px] font-medium transition-all ${
+              selected === o.value
+                ? 'bg-primary text-white shadow-sm shadow-primary/20'
+                : 'bg-surface-dim dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+            }`}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

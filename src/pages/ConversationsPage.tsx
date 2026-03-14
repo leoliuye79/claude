@@ -2,12 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useStore } from '@/store';
 import Avatar from '@/components/common/Avatar';
 import { formatConversationTime } from '@/utils/dateFormatter';
-import { Plus } from 'lucide-react';
+import { Plus, Trash2, Pin } from 'lucide-react';
 
 export default function ConversationsPage() {
   const conversations = useStore((s) => s.conversations);
   const agents = useStore((s) => s.agents);
   const deleteConversation = useStore((s) => s.deleteConversation);
+  const pinConversation = useStore((s) => s.pinConversation);
   const navigate = useNavigate();
 
   const sorted = [...conversations].sort((a, b) => {
@@ -21,52 +22,71 @@ export default function ConversationsPage() {
 
   return (
     <div className="flex-1 flex flex-col">
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
-        <h1 className="text-lg font-bold">对话</h1>
-        <button onClick={() => navigate('/contacts')} className="p-2 text-primary">
-          <Plus size={22} />
-        </button>
+      {/* Header */}
+      <header className="px-5 pt-5 pb-3">
+        <div className="flex items-center justify-between">
+          <h1 className="text-[22px] font-bold tracking-tight">对话</h1>
+          <button
+            onClick={() => navigate('/contacts')}
+            className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 active:scale-95 transition-all"
+          >
+            <Plus size={20} strokeWidth={2.5} />
+          </button>
+        </div>
       </header>
 
       {sorted.length === 0 ? (
-        <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
-          <p className="mb-2">还没有对话</p>
-          <button onClick={() => navigate('/contacts')} className="text-primary text-sm">
-            选择一个伙伴开始聊天
+        <div className="flex-1 flex flex-col items-center justify-center px-8">
+          <div className="w-20 h-20 rounded-3xl gradient-primary opacity-10 mb-5" />
+          <p className="text-gray-400 dark:text-gray-500 text-[15px] mb-3">还没有对话</p>
+          <button
+            onClick={() => navigate('/contacts')}
+            className="text-primary text-sm font-medium px-5 py-2 rounded-full bg-primary/10 hover:bg-primary/15 transition-colors"
+          >
+            选择伙伴开始聊天
           </button>
         </div>
       ) : (
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto px-3">
           {sorted.map((conv) => {
             const agent = agentMap[conv.agentId];
             if (!agent) return null;
             return (
               <div
                 key={conv.id}
-                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer active:bg-gray-100 dark:active:bg-gray-700 transition-colors"
+                className="flex items-center gap-3.5 px-3 py-3.5 rounded-2xl hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer active:bg-gray-100 dark:active:bg-white/10 transition-all group"
                 onClick={() => navigate(`/chat/${conv.id}`)}
               >
                 <Avatar name={agent.name} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-[15px]">
+                  <div className="flex items-center justify-between mb-0.5">
+                    <span className="font-semibold text-[15px] flex items-center gap-1.5">
                       {agent.nameZh}
-                      {conv.isPinned && <span className="ml-1 text-xs text-primary">📌</span>}
+                      {conv.isPinned && <Pin size={12} className="text-primary fill-primary" />}
                     </span>
-                    <span className="text-xs text-gray-400">
+                    <span className="text-[11px] text-gray-400 dark:text-gray-500 font-medium">
                       {conv.lastMessageAt && formatConversationTime(conv.lastMessageAt)}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 truncate mt-0.5">
+                  <p className="text-[13px] text-gray-400 dark:text-gray-500 truncate leading-snug">
                     {conv.lastMessagePreview ?? ''}
                   </p>
                 </div>
-                <button
-                  onClick={(e) => { e.stopPropagation(); deleteConversation(conv.id); }}
-                  className="text-xs text-gray-300 hover:text-red-400 ml-1 shrink-0"
-                >
-                  ✕
-                </button>
+                {/* Actions on hover */}
+                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); pinConversation(conv.id); }}
+                    className={`p-1.5 rounded-lg transition-colors ${conv.isPinned ? 'text-primary' : 'text-gray-300 hover:text-primary'}`}
+                  >
+                    <Pin size={14} />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); deleteConversation(conv.id); }}
+                    className="p-1.5 rounded-lg text-gray-300 hover:text-danger transition-colors"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
               </div>
             );
           })}
