@@ -25,19 +25,19 @@ export default function ChatBubble({ message, agentName }: ChatBubbleProps) {
   return (
     <div className={`flex flex-col mb-4 ${isUser ? 'items-end' : 'items-start'}`}>
       {!isUser && agentName && (
-        <span className="text-[11px] text-gray-400 dark:text-gray-500 ml-1 mb-1.5 font-medium">{agentName}</span>
+        <span className="text-xs text-gray-400 dark:text-gray-500 ml-1 mb-1.5 font-medium">{agentName}</span>
       )}
       <div
-        className={`max-w-[80%] px-4 py-3 text-[15px] leading-relaxed whitespace-pre-wrap ${
+        className={`max-w-[72%] px-4 py-3 text-base leading-relaxed whitespace-pre-wrap break-anywhere ${
           isUser
             ? 'gradient-primary text-white rounded-2xl rounded-br-sm shadow-sm shadow-primary/20'
-            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-2xl rounded-bl-sm shadow-sm'
+            : 'bg-white dark:bg-dark-card text-gray-700 dark:text-gray-200 rounded-2xl rounded-bl-sm shadow-sm'
         }`}
       >
         {message.content}
       </div>
       {message.correction && <CorrectionBubble correction={message.correction} />}
-      <span className="text-[11px] text-gray-300 dark:text-gray-600 mt-1.5 mx-1 font-medium">
+      <span className="text-xs text-gray-300 dark:text-gray-600 mt-1.5 mx-1 font-medium">
         {formatChatTime(message.createdAt)}
       </span>
     </div>

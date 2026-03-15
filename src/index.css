@@ -18,6 +18,10 @@
   --color-danger: #FF6B6B;
   --color-success: #00B894;
   --color-warning: #FDCB6E;
+  --color-dark-base: #0A0A0F;
+  --color-dark-surface: #12121A;
+  --color-dark-card: #1A1A28;
+  --color-dark-border: #2A2A3A;
 }
 
 * {
@@ -152,6 +156,18 @@ body {
 .input-focus-glow:focus {
   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
   border-color: rgba(108, 92, 231, 0.3);
+}
+
+/* Word break safety */
+.break-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in { animation: none; }
+  .animate-bounce { animation: none; }
 }
 
 /* Tap highlight */

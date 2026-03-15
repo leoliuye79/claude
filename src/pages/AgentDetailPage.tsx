@@ -32,12 +32,12 @@ export default function AgentDetailPage() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col bg-white dark:bg-[#12121A]">
+    <div className="flex-1 flex flex-col bg-white dark:bg-dark-surface">
       {/* Header with gradient background */}
       <div className="gradient-primary pb-16 pt-3 px-3 relative">
         <button
           onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-xl flex items-center justify-center text-white/80 hover:bg-white/10 transition-colors"
+          className="w-11 h-11 rounded-xl flex items-center justify-center text-white/80 hover:bg-white/10 transition-colors"
         >
           <ChevronLeft size={22} />
         </button>
@@ -45,7 +45,7 @@ export default function AgentDetailPage() {
 
       {/* Profile card overlapping header */}
       <div className="flex-1 overflow-y-auto -mt-12 relative">
-        <div className="mx-4 bg-white dark:bg-gray-800/50 rounded-3xl shadow-lg dark:shadow-none px-5 pt-12 pb-5 relative mb-4">
+        <div className="mx-4 bg-white dark:bg-dark-card rounded-3xl shadow-lg dark:shadow-none px-5 pt-12 pb-5 relative mb-4">
           {/* Avatar centered on top */}
           <div className="absolute -top-8 left-1/2 -translate-x-1/2">
             <Avatar name={agent.name} size="xl" />
@@ -53,14 +53,14 @@ export default function AgentDetailPage() {
 
           <div className="text-center mb-5">
             <h2 className="text-xl font-bold dark:text-white">{agent.nameZh}</h2>
-            <p className="text-[13px] text-gray-400 dark:text-gray-500 mt-0.5">{agent.name}</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500 mt-0.5">{agent.name}</p>
           </div>
 
           <div className="grid grid-cols-4 gap-2">
             {info.map((item) => (
-              <div key={item.label} className="bg-surface-dim dark:bg-gray-700/50 rounded-xl p-2.5 text-center">
-                <p className="text-[10px] text-gray-400 dark:text-gray-500 font-medium mb-0.5">{item.label}</p>
-                <p className="text-[12px] font-semibold dark:text-gray-200 truncate">{item.value}</p>
+              <div key={item.label} className="bg-surface-dim dark:bg-dark-card rounded-xl p-2.5 text-center">
+                <p className="text-xs text-gray-400 dark:text-gray-500 font-medium mb-0.5">{item.label}</p>
+                <p className="text-xs font-semibold dark:text-gray-200 truncate">{item.value}</p>
               </div>
             ))}
           </div>
@@ -68,15 +68,15 @@ export default function AgentDetailPage() {
 
         <div className="px-5 space-y-5 pb-24">
           <section>
-            <h3 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">性格</h3>
-            <p className="text-[14px] text-gray-600 dark:text-gray-300 leading-relaxed">{agent.personality}</p>
+            <h3 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">性格</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{agent.personality}</p>
           </section>
 
           <section>
-            <h3 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">话题</h3>
+            <h3 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">话题</h3>
             <div className="flex flex-wrap gap-2">
               {agent.topics.map((t) => (
-                <span key={t} className="text-[12px] bg-surface-dim dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1.5 rounded-lg font-medium">
+                <span key={t} className="text-xs bg-surface-dim dark:bg-dark-card text-gray-600 dark:text-gray-300 px-3 py-1.5 rounded-lg font-medium">
                   {t}
                 </span>
               ))}
@@ -84,16 +84,16 @@ export default function AgentDetailPage() {
           </section>
 
           <section>
-            <h3 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">打招呼</h3>
-            <div className="bg-surface-dim dark:bg-gray-800 rounded-2xl p-4">
-              <p className="text-[14px] text-gray-600 dark:text-gray-300 italic leading-relaxed">"{agent.greeting}"</p>
+            <h3 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">打招呼</h3>
+            <div className="bg-surface-dim dark:bg-dark-card rounded-2xl p-4">
+              <p className="text-sm text-gray-600 dark:text-gray-300 italic leading-relaxed">"{agent.greeting}"</p>
             </div>
           </section>
         </div>
       </div>
 
       {/* Floating button */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white dark:from-[#12121A] via-white/80 dark:via-[#12121A]/80 to-transparent pt-12">
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white dark:from-dark-surface via-white/80 dark:via-dark-surface/80 to-transparent pt-12">
         <button
           onClick={handleStartChat}
           className="w-full gradient-primary text-white py-3.5 rounded-2xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform"
