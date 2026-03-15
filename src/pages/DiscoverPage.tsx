@@ -5,10 +5,10 @@ import { ROLE_LABELS } from '@/types';
 import { ChevronRight } from 'lucide-react';
 
 const SCENARIOS = [
-  { title: '日常对话', desc: '练习日常英语交流', agentId: 'agent_friend_jake', emoji: '💬', gradient: 'from-blue-500 to-cyan-400' },
-  { title: '面试准备', desc: '模拟英语面试场景', agentId: 'agent_coach_rachel', emoji: '💼', gradient: 'from-violet-500 to-purple-400' },
-  { title: '旅行英语', desc: '学习旅行常用表达', agentId: 'agent_travel_sam', emoji: '✈️', gradient: 'from-amber-500 to-orange-400' },
-  { title: '商务邮件', desc: '练习专业邮件写作', agentId: 'agent_colleague_linda', emoji: '📧', gradient: 'from-emerald-500 to-teal-400' },
+  { title: '日常对话', desc: '练习日常英语交流', agentId: 'agent_friend_jake', emoji: '💬', gradient: 'from-primary to-primary-light' },
+  { title: '面试准备', desc: '模拟英语面试场景', agentId: 'agent_coach_rachel', emoji: '💼', gradient: 'from-primary-dark to-primary' },
+  { title: '旅行英语', desc: '学习旅行常用表达', agentId: 'agent_travel_sam', emoji: '✈️', gradient: 'from-accent to-accent-light' },
+  { title: '商务邮件', desc: '练习专业邮件写作', agentId: 'agent_colleague_linda', emoji: '📧', gradient: 'from-primary to-accent' },
 ];
 
 export default function DiscoverPage() {
@@ -42,7 +42,7 @@ export default function DiscoverPage() {
             <button
               key={s.agentId}
               onClick={() => handleStartScenario(s.agentId)}
-              className="bg-white dark:bg-gray-800/50 rounded-2xl p-4 text-left hover:shadow-md dark:hover:bg-gray-800 transition-all active:scale-[0.98] border border-gray-100/80 dark:border-gray-700/30"
+              className="bg-white dark:bg-gray-800/50 rounded-2xl p-4 text-left shadow-card hover:shadow-card-hover dark:hover:bg-gray-800 transition-all card-interactive border border-gray-100/80 dark:border-gray-700/30"
             >
               <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center text-lg mb-3`}>
                 {s.emoji}
@@ -61,7 +61,7 @@ export default function DiscoverPage() {
             <div
               key={agent.id}
               onClick={() => navigate(`/agent/${agent.id}`)}
-              className="flex items-center gap-3.5 bg-white dark:bg-gray-800/50 rounded-2xl p-3.5 cursor-pointer hover:shadow-md dark:hover:bg-gray-800 transition-all active:scale-[0.99] border border-gray-100/80 dark:border-gray-700/30"
+              className="flex items-center gap-3.5 bg-white dark:bg-gray-800/50 rounded-2xl p-3.5 cursor-pointer shadow-card hover:shadow-card-hover dark:hover:bg-gray-800 transition-all card-interactive border border-gray-100/80 dark:border-gray-700/30"
             >
               <Avatar name={agent.name} />
               <div className="flex-1 min-w-0">

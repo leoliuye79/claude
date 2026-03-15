@@ -81,7 +81,7 @@ export default function AIModelSettingsPage() {
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder={provider === 'claude' ? 'sk-ant-...' : 'sk-...'}
-            className="w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 transition-all dark:text-white"
+            className="w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow transition-all dark:text-white"
           />
         </div>
 
@@ -124,7 +124,7 @@ export default function AIModelSettingsPage() {
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
                 placeholder="model-name"
-                className="w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 transition-all dark:text-white"
+                className="w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow transition-all dark:text-white"
               />
             </div>
             <div>
@@ -136,7 +136,7 @@ export default function AIModelSettingsPage() {
                 value={baseUrl}
                 onChange={(e) => setBaseUrl(e.target.value)}
                 placeholder="https://api.example.com/v1"
-                className="w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 transition-all dark:text-white"
+                className="w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow transition-all dark:text-white"
               />
             </div>
           </>
