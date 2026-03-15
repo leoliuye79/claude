@@ -30,11 +30,11 @@ export default function DiscoverPage() {
   return (
     <div className="flex-1 flex flex-col">
       <header className="px-5 pt-5 pb-3">
-        <h1 className="text-[22px] font-bold tracking-tight">发现</h1>
+        <h1 className="text-xl font-bold tracking-tight">发现</h1>
       </header>
 
       <div className="flex-1 overflow-y-auto px-4 py-2">
-        <h2 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-1">
+        <h2 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-1">
           热门场景
         </h2>
         <div className="grid grid-cols-2 gap-3 mb-8">
@@ -42,36 +42,36 @@ export default function DiscoverPage() {
             <button
               key={s.agentId}
               onClick={() => handleStartScenario(s.agentId)}
-              className="bg-white dark:bg-gray-800/50 rounded-2xl p-4 text-left shadow-card hover:shadow-card-hover dark:hover:bg-gray-800 transition-all card-interactive border border-gray-100/80 dark:border-gray-700/30"
+              className="bg-white dark:bg-dark-card rounded-2xl p-4 text-left shadow-card hover:shadow-card-hover dark:hover:bg-dark-card transition-all card-interactive border border-gray-100/80 dark:border-dark-border/30"
             >
               <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center text-lg mb-3`}>
                 {s.emoji}
               </div>
-              <h3 className="font-semibold text-[14px] mb-0.5 dark:text-white">{s.title}</h3>
-              <p className="text-[12px] text-gray-400 dark:text-gray-500 leading-snug">{s.desc}</p>
+              <h3 className="font-semibold text-sm mb-0.5 dark:text-white">{s.title}</h3>
+              <p className="text-xs text-gray-400 dark:text-gray-500 leading-snug">{s.desc}</p>
             </button>
           ))}
         </div>
 
-        <h2 className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-1">
+        <h2 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3 px-1">
           推荐伙伴
         </h2>
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           {agents.filter((a) => !a.isCustom).slice(0, 3).map((agent) => (
             <div
               key={agent.id}
               onClick={() => navigate(`/agent/${agent.id}`)}
-              className="flex items-center gap-3.5 bg-white dark:bg-gray-800/50 rounded-2xl p-3.5 cursor-pointer shadow-card hover:shadow-card-hover dark:hover:bg-gray-800 transition-all card-interactive border border-gray-100/80 dark:border-gray-700/30"
+              className="flex items-center gap-3 bg-white dark:bg-dark-card rounded-2xl p-3 cursor-pointer shadow-card hover:shadow-card-hover dark:hover:bg-dark-card transition-all card-interactive border border-gray-100/80 dark:border-dark-border/30"
             >
               <Avatar name={agent.name} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="font-semibold text-[14px] dark:text-white">{agent.nameZh}</span>
-                  <span className="text-[11px] font-medium bg-primary/10 text-primary px-2 py-0.5 rounded-md">
+                  <span className="font-semibold text-sm dark:text-white">{agent.nameZh}</span>
+                  <span className="text-xs font-medium bg-primary/10 text-primary px-2 py-0.5 rounded-md">
                     {ROLE_LABELS[agent.role]}
                   </span>
                 </div>
-                <p className="text-[12px] text-gray-400 dark:text-gray-500 truncate leading-snug">{agent.personality}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 truncate leading-snug">{agent.personality}</p>
               </div>
               <ChevronRight size={16} className="text-gray-300 dark:text-gray-600 shrink-0" />
             </div>

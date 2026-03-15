@@ -45,7 +45,7 @@ export default function OnboardingPage() {
   const Icon = s.icon;
 
   return (
-    <div className="flex-1 flex flex-col bg-white dark:bg-gray-900">
+    <div className="flex-1 flex flex-col bg-white dark:bg-dark-surface">
       {/* Top decoration */}
       <div className="h-2 gradient-primary" />
 
@@ -54,7 +54,7 @@ export default function OnboardingPage() {
         <div className="flex justify-end px-5 pt-4">
           <button
             onClick={() => { completeOnboarding(); navigate('/', { replace: true }); }}
-            className="text-gray-400 dark:text-gray-500 text-sm font-medium px-3 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="text-gray-400 dark:text-gray-500 text-sm font-medium px-4 py-2.5 min-h-[44px] rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             跳过
           </button>
@@ -68,12 +68,10 @@ export default function OnboardingPage() {
           <div className={`w-28 h-28 rounded-3xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-lg`}>
             <Icon size={48} className="text-white" strokeWidth={1.5} />
           </div>
-          <div className={`absolute -right-2 -top-2 w-8 h-8 rounded-full bg-gradient-to-br ${s.gradient} opacity-30 blur-sm`} />
-          <div className={`absolute -left-3 -bottom-3 w-10 h-10 rounded-full bg-gradient-to-br ${s.gradient} opacity-20 blur-md`} />
         </div>
 
-        <h1 className="text-[26px] font-bold tracking-tight mb-3 dark:text-white">{s.title}</h1>
-        <p className="text-gray-500 dark:text-gray-400 text-center text-[15px] leading-relaxed mb-4 max-w-[280px]">
+        <h1 className="text-2xl font-bold tracking-tight mb-3 dark:text-white">{s.title}</h1>
+        <p className="text-gray-500 dark:text-gray-400 text-center text-base leading-relaxed mb-4 max-w-[280px]">
           {s.subtitle}
         </p>
       </div>

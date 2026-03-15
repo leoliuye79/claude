@@ -43,11 +43,11 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
   const hasText = text.trim().length > 0;
 
   return (
-    <div className="px-3 py-3 bg-white dark:bg-[#12121A] border-t border-gray-100/50 dark:border-gray-800/30 relative">
+    <div className="px-4 py-3 bg-white dark:bg-dark-surface border-t border-gray-100/50 dark:border-dark-border/30 relative">
       {micTip && (
-        <div className="absolute -top-10 left-4 bg-gray-800 dark:bg-gray-700 text-white text-xs px-3.5 py-2 rounded-xl shadow-lg animate-fade-in">
+        <div className="absolute -top-10 left-4 bg-gray-800 dark:bg-dark-card text-white text-xs px-3.5 py-2 rounded-xl shadow-lg animate-fade-in">
           语音功能即将上线
-          <div className="absolute bottom-0 left-5 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800 dark:bg-gray-700" />
+          <div className="absolute bottom-0 left-5 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800 dark:bg-dark-card" />
         </div>
       )}
       <div className="flex items-end gap-2">
@@ -66,7 +66,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
             placeholder="输入消息..."
             rows={1}
             disabled={disabled}
-            className="w-full resize-none rounded-2xl bg-surface-dim dark:bg-gray-800 px-4 py-2.5 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow dark:text-gray-100 transition-all disabled:opacity-50 placeholder:text-gray-400"
+            className="w-full resize-none rounded-2xl bg-surface-dim dark:bg-dark-card px-4 py-2.5 text-base outline-none border border-transparent focus:border-primary/30 input-focus-glow dark:text-gray-100 transition-all disabled:opacity-50 placeholder:text-gray-400"
             style={{ maxHeight: 120 }}
           />
         </div>

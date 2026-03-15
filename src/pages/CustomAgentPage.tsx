@@ -42,11 +42,11 @@ export default function CustomAgentPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white dark:bg-[#12121A]">
-      <header className="flex items-center gap-2 px-3 py-3 border-b border-gray-100/50 dark:border-gray-800/30">
+    <div className="flex-1 flex flex-col bg-white dark:bg-dark-surface">
+      <header className="flex items-center gap-2 px-3 py-3 border-b border-gray-100/50 dark:border-dark-border/30">
         <button
           onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="w-11 h-11 rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
           <ChevronLeft size={22} />
         </button>
@@ -54,7 +54,7 @@ export default function CustomAgentPage() {
         <button
           onClick={handleSave}
           disabled={!name.trim() || !nameZh.trim()}
-          className="w-8 h-8 rounded-xl flex items-center justify-center text-primary disabled:text-gray-300 dark:disabled:text-gray-600 hover:bg-primary/10 transition-colors"
+          className="w-11 h-11 rounded-xl flex items-center justify-center text-primary disabled:text-gray-300 dark:disabled:text-gray-600 hover:bg-primary/10 transition-colors"
         >
           <Check size={20} strokeWidth={2.5} />
         </button>
@@ -117,10 +117,10 @@ export default function CustomAgentPage() {
 function Field({ label, value, onChange, placeholder, multiline }: {
   label: string; value: string; onChange: (v: string) => void; placeholder: string; multiline?: boolean;
 }) {
-  const cls = "w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow transition-all dark:text-white placeholder:text-gray-400";
+  const cls = "w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-dark-card text-base outline-none border border-transparent focus:border-primary/30 input-focus-glow transition-all dark:text-white placeholder:text-gray-400";
   return (
     <div>
-      <label className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
+      <label className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
         {label}
       </label>
       {multiline ? (
@@ -140,7 +140,7 @@ function ChipGroup({ label, options, selected, onSelect }: {
 }) {
   return (
     <div>
-      <label className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
+      <label className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
         {label}
       </label>
       <div className="flex flex-wrap gap-2">
@@ -148,10 +148,10 @@ function ChipGroup({ label, options, selected, onSelect }: {
           <button
             key={o.value}
             onClick={() => onSelect(o.value)}
-            className={`px-3.5 py-2 rounded-xl text-[13px] font-medium transition-all ${
+            className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
               selected === o.value
                 ? 'bg-primary text-white shadow-sm shadow-primary/20'
-                : 'bg-surface-dim dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                : 'bg-surface-dim dark:bg-dark-card text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-card'
             }`}
           >
             {o.label}

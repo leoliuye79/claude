@@ -33,26 +33,26 @@ export default function ChatPage() {
 
   if (!conv || !agent) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-white dark:bg-[#12121A]">
+      <div className="flex-1 flex items-center justify-center bg-white dark:bg-dark-surface">
         <p className="text-gray-400">对话不存在</p>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 flex flex-col h-dvh bg-surface-dim dark:bg-[#12121A]">
+    <div className="flex-1 flex flex-col h-dvh bg-surface-dim dark:bg-dark-surface">
       {/* Header */}
-      <header className="flex items-center gap-3 px-3 py-3 bg-white/90 dark:bg-[#12121A]/90 glass shrink-0 border-b border-gray-100/50 dark:border-gray-800/30">
+      <header className="flex items-center gap-3 px-3 py-3 bg-white/90 dark:bg-dark-surface/90 glass shrink-0 border-b border-gray-100/50 dark:border-dark-border/30">
         <button
           onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="w-11 h-11 rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
           <ChevronLeft size={22} />
         </button>
         <Avatar name={agent.name} size="sm" />
         <div className="flex-1 min-w-0">
-          <h2 className="text-[15px] font-semibold leading-tight dark:text-white">{agent.nameZh}</h2>
-          <p className="text-[11px] text-gray-400 dark:text-gray-500">{agent.name}</p>
+          <h2 className="text-base font-semibold leading-tight dark:text-white">{agent.nameZh}</h2>
+          <p className="text-xs text-gray-400 dark:text-gray-500">{agent.name}</p>
         </div>
       </header>
 
@@ -63,7 +63,7 @@ export default function ChatPage() {
         ))}
         {sending && (
           <div className="flex items-start mb-3 animate-fade-in">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
+            <div className="bg-white dark:bg-dark-card rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
               <div className="flex gap-1.5">
                 <span className="w-2 h-2 bg-gray-300 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 bg-gray-300 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
