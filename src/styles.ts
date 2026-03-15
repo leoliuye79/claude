@@ -1,0 +1,221 @@
+import { StyleSheet } from 'react-native';
+
+export const palette = {
+  ink: '#152033',
+  slate: '#556277',
+  line: '#D7DFEB',
+  paper: '#FFFDF8',
+  peach: '#FFF1E8',
+  sand: '#F4EBDD',
+  blue: '#DCE8FF',
+  mint: '#DDF4EE',
+  white: '#FFFFFF',
+  success: '#2B7A4B',
+};
+
+export const appStyles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: palette.paper,
+  },
+  root: {
+    flexGrow: 1,
+    paddingHorizontal: 18,
+    paddingTop: 18,
+    paddingBottom: 24,
+    alignItems: 'center',
+  },
+  content: {
+    width: '100%',
+    maxWidth: 920,
+  },
+  heroCard: {
+    backgroundColor: palette.sand,
+    borderRadius: 24,
+    padding: 20,
+    marginBottom: 14,
+  },
+  eyebrow: {
+    fontSize: 12,
+    color: palette.slate,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: palette.ink,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: palette.slate,
+  },
+  tabRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 14,
+  },
+  tabButton: {
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: palette.line,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    backgroundColor: palette.white,
+  },
+  tabButtonActive: {
+    backgroundColor: palette.ink,
+    borderColor: palette.ink,
+  },
+  tabLabel: {
+    color: palette.ink,
+    fontWeight: '600',
+  },
+  tabLabelActive: {
+    color: palette.white,
+  },
+  sectionCard: {
+    backgroundColor: palette.white,
+    borderRadius: 22,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: palette.line,
+  },
+  ctaRow: {
+    flexDirection: 'row',
+    gap: 10,
+    flexWrap: 'wrap',
+    marginTop: 14,
+  },
+  optionGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginTop: 14,
+  },
+  optionCard: {
+    minWidth: 130,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: palette.line,
+    backgroundColor: palette.white,
+    paddingHorizontal: 14,
+    paddingVertical: 14,
+  },
+  optionCardActive: {
+    backgroundColor: palette.ink,
+    borderColor: palette.ink,
+  },
+  optionText: {
+    color: palette.ink,
+    fontWeight: '600',
+  },
+  optionTextActive: {
+    color: palette.white,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  agentPill: {
+    borderRadius: 18,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderWidth: 1,
+    marginRight: 8,
+    minWidth: 120,
+  },
+  agentName: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: palette.ink,
+  },
+  agentRole: {
+    fontSize: 12,
+    color: palette.slate,
+    marginTop: 4,
+  },
+  messageBubble: {
+    borderRadius: 18,
+    padding: 14,
+    marginBottom: 10,
+    maxWidth: '88%',
+  },
+  userBubble: {
+    alignSelf: 'flex-end',
+    backgroundColor: palette.blue,
+  },
+  agentBubble: {
+    alignSelf: 'flex-start',
+    backgroundColor: palette.peach,
+  },
+  messageText: {
+    color: palette.ink,
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  correctionCard: {
+    backgroundColor: palette.mint,
+    borderRadius: 18,
+    padding: 16,
+    marginTop: 6,
+    marginBottom: 12,
+  },
+  correctionTitle: {
+    color: palette.ink,
+    fontWeight: '700',
+    marginBottom: 8,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: palette.line,
+    borderRadius: 18,
+    backgroundColor: palette.white,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    minHeight: 50,
+    color: palette.ink,
+  },
+  primaryButton: {
+    borderRadius: 16,
+    backgroundColor: palette.ink,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  secondaryButton: {
+    borderRadius: 16,
+    backgroundColor: palette.white,
+    borderWidth: 1,
+    borderColor: palette.line,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: palette.white,
+    fontWeight: '700',
+  },
+  secondaryButtonText: {
+    color: palette.ink,
+    fontWeight: '700',
+  },
+  smallText: {
+    fontSize: 13,
+    color: palette.slate,
+    lineHeight: 18,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: palette.ink,
+  },
+});

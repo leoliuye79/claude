@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "lingochat-app-20260315",
-    "slug": "lingochat-app-20260315",
+    "name": "LingoChat",
+    "slug": "lingochat",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
