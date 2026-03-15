@@ -8,22 +8,22 @@ const STEPS = [
     icon: MessageCircle,
     title: '与 AI 伙伴对话',
     subtitle: '6 位风格各异的英语伙伴，随时随地陪你练习口语',
-    gradient: 'from-blue-500 to-cyan-400',
-    bg: 'bg-blue-50 dark:bg-blue-950/30',
+    gradient: 'from-primary to-primary-light',
+    bg: 'bg-primary/5 dark:bg-primary/10',
   },
   {
     icon: BookOpen,
     title: '智能纠错反馈',
     subtitle: 'AI 实时纠正语法错误，附带中英文详细解释',
-    gradient: 'from-violet-500 to-purple-400',
-    bg: 'bg-violet-50 dark:bg-violet-950/30',
+    gradient: 'from-primary-dark to-primary',
+    bg: 'bg-primary/5 dark:bg-primary/10',
   },
   {
     icon: Mic,
     title: '沉浸式学习',
     subtitle: '语音输入、TTS 朗读，打造真实语言环境',
-    gradient: 'from-rose-500 to-orange-400',
-    bg: 'bg-rose-50 dark:bg-rose-950/30',
+    gradient: 'from-accent to-accent-light',
+    bg: 'bg-accent/5 dark:bg-accent/10',
   },
 ];
 

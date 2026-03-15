@@ -23,7 +23,7 @@ export default function SettingsPage() {
         </div>
         <button
           onClick={() => navigate('/settings/ai-model')}
-          className="w-full flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 hover:shadow-md dark:hover:bg-gray-800 transition-all active:scale-[0.99] mb-6"
+          className="w-full flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 shadow-card hover:shadow-card-hover dark:hover:bg-gray-800 transition-all card-interactive mb-6"
         >
           <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
             <Cpu size={18} className="text-white" />
@@ -41,8 +41,8 @@ export default function SettingsPage() {
         <div className="text-[11px] text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider px-2 mb-2">
           外观
         </div>
-        <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+        <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 shadow-card mb-6">
+          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
             <Moon size={18} className="text-white" />
           </div>
           <span className="flex-1 text-[15px] font-medium dark:text-white">深色模式</span>
@@ -64,8 +64,8 @@ export default function SettingsPage() {
         <div className="text-[11px] text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider px-2 mb-2">
           关于
         </div>
-        <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
+        <div className="flex items-center gap-3.5 px-4 py-4 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100/80 dark:border-gray-700/30 shadow-card">
+          <div className="w-10 h-10 rounded-xl gradient-accent flex items-center justify-center">
             <Sparkles size={18} className="text-white" />
           </div>
           <div className="flex-1">

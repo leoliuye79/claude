@@ -66,7 +66,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
             placeholder="输入消息..."
             rows={1}
             disabled={disabled}
-            className="w-full resize-none rounded-2xl bg-surface-dim dark:bg-gray-800 px-4 py-2.5 text-[15px] outline-none border border-transparent focus:border-primary/30 dark:text-gray-100 transition-all disabled:opacity-50 placeholder:text-gray-400"
+            className="w-full resize-none rounded-2xl bg-surface-dim dark:bg-gray-800 px-4 py-2.5 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow dark:text-gray-100 transition-all disabled:opacity-50 placeholder:text-gray-400"
             style={{ maxHeight: 120 }}
           />
         </div>

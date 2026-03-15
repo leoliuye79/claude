@@ -117,7 +117,7 @@ export default function CustomAgentPage() {
 function Field({ label, value, onChange, placeholder, multiline }: {
   label: string; value: string; onChange: (v: string) => void; placeholder: string; multiline?: boolean;
 }) {
-  const cls = "w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 transition-all dark:text-white placeholder:text-gray-400";
+  const cls = "w-full px-4 py-3.5 rounded-2xl bg-surface-dim dark:bg-gray-800 text-[15px] outline-none border border-transparent focus:border-primary/30 input-focus-glow transition-all dark:text-white placeholder:text-gray-400";
   return (
     <div>
       <label className="text-[12px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider block mb-2">
